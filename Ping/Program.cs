@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace Pinging
 {
 
-    public class Program
+    public static class Pinging
     {
         public static async Task<string> Pinger(string url, int seconds)
         {
@@ -15,18 +15,15 @@ namespace Pinging
                 using (var pinger = new Ping())
                 {
                     var reply = await pinger.SendPingAsync(url, seconds * 1000);
-
                     if(reply.Status == IPStatus.Success)
                     {
-                        Console.WriteLine($"Success");
+                        return "Success";
                     }
                     else
                     {
-                        Console.WriteLine($"Failed");
+                        return "Failed";
                     }
                 }
-
-                return "Ok";
             }
             catch(Exception ex)
             {
